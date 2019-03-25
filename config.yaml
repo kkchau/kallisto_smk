@@ -1,0 +1,3 @@
+# Path to directory containing fastq files, separated into directories per sample
+samples_dir: "/Users/kkhaichau/Documents/GitHub/kallisto_smk/source/rna_seq_data"
+transcriptome: ""

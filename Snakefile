@@ -26,3 +26,14 @@ if not os.path.exists("log"):
 
 rule all:
     input: expand("", samples = config['samples'].keys())
+
+"""Quantify RNA-Seq data with Kallisto"""
+rule quantify:
+    input:
+        config["samples_dir"]
+    output:
+        "data/{samples}".format(samples = os.listdir(config["samples_dir"]))
+    params:
+        config["transcriptome"]
+    script:
+        "scripts/kallisto_quant.py"

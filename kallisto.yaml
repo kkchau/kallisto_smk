@@ -1,0 +1,9 @@
+name: kallisto
+channels:
+  - r
+  - conda-forge
+  - defaults
+dependencies:
+  - snakemake
+  - kallisto
+  - r-tidyverse
