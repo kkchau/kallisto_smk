@@ -27,13 +27,23 @@ if not os.path.exists("log"):
 rule all:
     input: expand("", samples = config['samples'].keys())
 
+"""Construct transcriptome index"""
+rule index:
+    input:
+        config["transcriptome"]
+    output:
+        config["transcriptome"] + ".idx"
+    script:
+        "scripts/kallisto_index.py"
+
 """Quantify RNA-Seq data with Kallisto"""
 rule quantify:
     input:
-        config["samples_dir"]
+        config["samples_dir"],
+        config["transcriptome"] + ".idx"
     output:
         "data/{samples}".format(samples = os.listdir(config["samples_dir"]))
     params:
-        config["transcriptome"]
+        
     script:
         "scripts/kallisto_quant.py"
